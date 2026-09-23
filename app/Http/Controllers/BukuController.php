@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
+use App\Http\Requests\StoreBukuRequest;
+use App\Http\Requests\UpdateBukuRequest;
 
 class BukuController extends Controller
 {
@@ -22,7 +24,9 @@ class BukuController extends Controller
     {
         Buku::create($request->validated());
 
-        return redirect()->route('buku.index')->with('sukses', 'Buku	berhasil	ditambahkan.');
+        return redirect()
+            ->route('buku.index')
+            ->with('sukses', 'Buku berhasil ditambahkan.');
     }
 
     public function edit(Buku $buku)
@@ -34,13 +38,17 @@ class BukuController extends Controller
     {
         $buku->update($request->validated());
 
-        return redirect()->route('buku.index')->with('sukses', 'Buku	berhasil	diperbarui.');
+        return redirect()
+            ->route('buku.index')
+            ->with('sukses', 'Buku berhasil diperbarui.');
     }
 
     public function destroy(Buku $buku)
     {
         $buku->delete();
 
-        return redirect()->route('buku.index')->with('sukses', 'Buku	berhasil	dihapus.');
+        return redirect()
+            ->route('buku.index')
+            ->with('sukses', 'Buku berhasil dihapus.');
     }
 }
